@@ -1,0 +1,33 @@
+<div class="task-card">
+  @if(!isEditMode){
+  <div class="task-checkbox">
+    <input type="checkbox" [checked]="task.completed" (change)="handleToggleTaskComplete()" id="task-{{ task.id }}">
+    <label for="task-{{ task.id }}" class="sr-only">Complete task</label>
+  </div>
+  }
+
+  <!-- Title and Description in the middle -->
+  <div class="task-content" [class.completed]="task.completed">
+    @if(isEditMode){
+    <div class="edit-fields">
+      <input type="text" [(ngModel)]="editedTitle" placeholder="Task Title">
+      <textarea [(ngModel)]="editedDescription" placeholder="Task Description"></textarea>
+    </div>
+    }@else{
+    <h3>{{ task.title }}</h3>
+    <p>{{ task.description }}</p>
+    }
+  </div>
+
+  <!-- Delete button on the right -->
+  <div class="task-actions">
+    @if(isEditMode){
+    <button (click)="handleSubmitEdit()">Submit</button>
+    <button (click)="handleToggleEditMode()">Cancel</button>
+    }@else{
+    <button (click)="handleToggleEditMode()">Edit</button>
+    <button (click)="handleDeleteTask()">Delete</button>
+    }
+
+  </div>
+</div>

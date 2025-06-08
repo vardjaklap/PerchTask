@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <h1 class="app-title">Task Manager</h1>
+  <!-- Add New Task Section -->
+  <div class="add-task-section">
+    <h2 class="section-title">Add New Task</h2>
+    <div class="input-group">
+      <input type="text" [(ngModel)]="newTaskTitle" placeholder="Task Title" required>
+      <textarea [(ngModel)]="newTaskDescription" placeholder="Task Description (Optional)" rows="3"></textarea>
+      <button (click)="addTask()">Add Task</button>
+    </div>
+  </div>
+  <div class="task-list">
+    <h2 class="section-title">Your Tasks</h2>
+    <div *ngIf="tasks.length === 0" class="no-tasks-message">
+      No tasks yet. Add a new task above!
+    </div>
+    <div *ngFor="let task of tasks" class="task-item">
+      <app-task [task]="task" (updateTask)="updateTask($event)" (deleteTask)="deleteTask($event)"></app-task>
+    </div>
+  </div>
+</div>
