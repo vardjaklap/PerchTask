@@ -1,17 +1,11 @@
-// Assuming your main Express app instance is exported from src/server.ts
 import request from 'supertest';
-// Adjust the path to your main app file as necessary.
-// If your 'app' object is in 'src/server.ts', you'd import it like this:
+
 import app from '../../src/app';
 import Task from '../../src/database/models/task.model';
 
-// You might need to import the 'tasks' array if you want to clear it for test isolation.
-// This assumes 'tasks' array is exported from your taskController for testing purposes.
-// If not, you'd need a way to reset your mock database or connect to a real test database.
 
 describe('Task API Routes', () => {
-    // Before each test, clear the mock 'tasks' array to ensure test isolation.
-    // In a real application, you'd reset your test database here.
+
     beforeEach(() => {
         Task.truncate();
     });
